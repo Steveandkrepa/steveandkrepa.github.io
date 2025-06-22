@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Steve的博客</title>
-  <link rel="icon" href="./image/index.jpg" type="image/jpeg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="header">
     <h1>Steve的博客</h1>
-    <p class="subtitle">用代码和文字记录成长的每一天</p>
+    <p>用代码和文字记录成长的每一天</p>
   </header>
 
   <nav class="top-bar">
@@ -25,33 +24,82 @@
   </nav>
 
   <main class="blog-container">
+    <!-- 技术分享 -->
     <section class="category-block" data-category="tech">
       <h2 class="category-title">技术分享</h2>
-      <article class="article">
-        <div class="date">2025年6月22日</div>
-        <h2>前端性能优化的五个关键点</h2>
-        <p>前端性能优化不仅能提升用户体验，还能降低服务器压力。常见方法包括图片懒加载、代码分包、缓存利用、减少重绘重排和使用CDN。</p>
-        <button class="read-more-btn" onclick="showArticleModal('前端性能优化的五个关键点','2025年6月22日','image/tech1.jpg','前端性能优化不仅能提升用户体验，还能降低服务器压力。常见方法包括图片懒加载、代码分包、缓存利用、减少重绘重排和使用CDN。')">阅读全文</button>
-      </article>
+      <div class="grid">
+        <div class="grid-item" onclick="openImage('image/tech1.jpg')">
+          <img src="image/tech1.jpg" alt="技术1" />
+          <p>前端性能优化的五个关键点</p>
+        </div>
+        <div class="grid-item" onclick="openImage('image/tech2.jpg')">
+          <img src="image/tech2.jpg" alt="技术2" />
+          <p>Vue3 响应式原理简析</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 摄影 -->
+    <section class="category-block" data-category="photo">
+      <h2 class="category-title">摄影</h2>
+      <div class="grid">
+        <div class="grid-item" onclick="openImage('image/photo1.jpg')">
+          <img src="image/photo1.jpg" alt="摄影1" />
+          <p>晨曦中的城市</p>
+        </div>
+        <div class="grid-item" onclick="openImage('image/photo2.jpg')">
+          <img src="image/photo2.jpg" alt="摄影2" />
+          <p>雨后公园的色彩</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 随笔 -->
+    <section class="category-block" data-category="essay">
+      <h2 class="category-title">随笔</h2>
+      <div class="grid">
+        <div class="grid-item" onclick="openImage('image/essay1.jpg')">
+          <img src="image/essay1.jpg" alt="随笔1" />
+          <p>慢下来，感受生活</p>
+        </div>
+        <div class="grid-item" onclick="openImage('image/essay2.jpg')">
+          <img src="image/essay2.jpg" alt="随笔2" />
+          <p>一本书的启发</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 生活 -->
+    <section class="category-block" data-category="life">
+      <h2 class="category-title">生活</h2>
+      <div class="grid">
+        <div class="grid-item" onclick="openImage('image/life1.jpg')">
+          <img src="image/life1.jpg" alt="生活1" />
+          <p>旅行中的点滴</p>
+        </div>
+        <div class="grid-item" onclick="openImage('image/life2.jpg')">
+          <img src="image/life2.jpg" alt="生活2" />
+          <p>我的宠物日常</p>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="feature-bar">
-    <a class="feature-btn" href="#">我的Bilibili视频</a>
-    <a class="feature-btn" href="#">提供的服务</a>
-  </footer>
-
-  <div id="articleModal" class="article-modal">
-    <div class="article-modal-content">
-      <button class="article-modal-close" onclick="closeModal()">&times;</button>
-      <h2 id="modalTitle"></h2>
-      <div class="modal-date" id="modalDate"></div>
-      <img id="modalImage" class="modal-image" src="" alt="文章图片" />
-      <div class="modal-text" id="modalContent"></div>
-    </div>
+  <!-- 图片查看模态框 -->
+  <div id="imgModal" class="img-modal" onclick="closeImage()">
+    <img id="modalImg" src="" alt="放大图片" />
   </div>
 
-  <button id="backToTop" title="回到顶部">↑</button>
+  <footer class="footer">
+    <div class="footer-links">
+      <a class="feature-btn" href="#">我的Bilibili视频</a>
+      <a class="feature-btn" href="#">提供的服务</a>
+    </div>
+    <div class="copyright">
+      © 2025 Steve的博客 | 保留所有权利
+    </div>
+  </footer>
+
   <script src="main.js"></script>
 </body>
 </html>
