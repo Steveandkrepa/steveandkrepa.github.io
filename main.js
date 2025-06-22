@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const keyword = searchInput.value.toLowerCase();
     categoryBlocks.forEach(block => {
       let hasVisible = false;
-      const articles = block.querySelectorAll('.article');
-      articles.forEach(article => {
-        const match = article.innerText.toLowerCase().includes(keyword);
-        article.style.display = match ? 'block' : 'none';
+      const items = block.querySelectorAll('.grid-item');
+      items.forEach(item => {
+        const match = item.innerText.toLowerCase().includes(keyword);
+        item.style.display = match ? 'block' : 'none';
         if (match) hasVisible = true;
       });
       block.style.display = hasVisible ? 'block' : 'none';
@@ -36,23 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
   filterCategory('all');
 });
 
-function showArticleModal(title, date, image, content) {
-  document.getElementById('modalTitle').innerText = title;
-  document.getElementById('modalDate').innerText = date;
-  document.getElementById('modalImage').src = image;
-  document.getElementById('modalContent').innerText = content;
-  document.getElementById('articleModal').classList.add('active');
+function openImage(src) {
+  const modal = document.getElementById('imgModal');
+  const img = document.getElementById('modalImg');
+  img.src = src;
+  modal.style.display = 'flex';
 }
-function closeModal() {
-  document.getElementById('articleModal').classList.remove('active');
+function closeImage() {
+  document.getElementById('imgModal').style.display = 'none';
 }
-document.getElementById('articleModal').onclick = function(e) {
-  if (e.target === this) closeModal();
-};
-const backToTopBtn = document.getElementById('backToTop');
-window.onscroll = () => {
-  backToTopBtn.style.display = (window.scrollY > 200) ? 'block' : 'none';
-};
-backToTopBtn.onclick = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
