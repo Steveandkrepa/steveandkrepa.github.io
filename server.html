@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>外链 - Steve的博客</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./image/index.jpg" type="image/jpeg">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+            min-height: 100vh;
+        }
+        .service-list {
+            max-width: 900px;
+            margin: 60px auto 0 auto;
+            padding: 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px #e3e3e3;
+            width: 220px;
+            padding: 24px 18px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .service-card:hover {
+            box-shadow: 0 6px 24px #b3c6e0;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .service-img-link {
+            display: block;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 18px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px #e3e3e3;
+            background: #f7fbff;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .service-img-link:hover {
+            box-shadow: 0 4px 16px #b3c6e0;
+            transform: scale(1.06);
+        }
+        .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .service-title {
+            color: #1976d2;
+            font-size: 1.15em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .service-desc {
+            color: #666;
+            font-size: 0.98em;
+            text-align: center;
+        }
+        .back-btn {
+            display: block;
+            margin: 48px auto 0 auto;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            padding: 10px 36px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px #e3e3e3;
+            text-decoration: none;
+            text-align: center;
+        }
+        .back-btn:hover {
+            background: #1565c0;
+            box-shadow: 0 4px 16px #b3c6e0;
+        }
+        @media (max-width: 700px) {
+            .service-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 18px;
+            }
+            .service-card {
+                width: 92vw;
+                max-width: 340px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="back-btn" href="index.html" style="margin-bottom:36px;margin-top:0;">返回博客首页</a>
+    <div class="service-list">
+        <div class="service-card">
+            <a class="service-img-link" href="https://github.com/Steveandkrepa" target="_blank">
+                <img class="service-img" src="image/github.png" alt="GitHub主页">
+            </a>
+            <div class="service-title">我的GitHub主页</div>
+            <div class="service-desc">欢迎参观我的GitHub仓库，记得点Star哦！</div>
+        </div>
+        <div class="service-card">
+            <a class="service-img-link" href="https://space.bilibili.com/612425425?spm_id_from=333.1007.0.0" target="_blank">
+                <img class="service-img" src="image/bilibili.png" alt="B站账号">
+            </a>
+            <div class="service-title">我的B站账号</div>
+            <div class="service-desc">欢迎关注我的Bilibili账号，获取更多原创视频内容！</div>
+        </div>
+        <div class="service-card">
+            <a class="service-img-link" href="https://ns.926431.xyz:9443" target="_blank">
+                <img class="service-img" src="image/nas.png" alt="NAS主页">
+            </a>
+            <div class="service-title">NAS主页（IPv6）</div>
+            <div class="service-desc">我的NAS云盘主页，支持IPv6访问，欢迎体验！（非公开）</div>
+        </div>
+        <div class="service-card">
+            <a class="service-img-link" href="http://ns.926431.xyz:8091" target="_blank">
+                <img class="service-img" src="image/qb.png" alt="qbt下载器">
+            </a>
+            <div class="service-title">qBittorrent下载器</div>
+            <div class="service-desc">远程qBittorrent下载管理，便捷高效。（非公开）</div>
+        </div>
+        <div class="service-card">
+            <a class="service-img-link" href="http://ns.926431.xyz:8123/" target="_blank">
+                <img class="service-img" src="image/ha.png" alt="摄影后期处理">
+            </a>
+            <div class="service-title">HomeAssistant</div>
+            <div class="service-desc">智能家居，链接万物！（非公开）</div>
+        </div>
+    </div>
+</body>
+</html>

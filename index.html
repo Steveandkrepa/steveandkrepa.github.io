@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+        <meta charset="UTF-8">
+        <title>我的博客</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="./image/index.jpg" type="image/jpeg">
+        <script>
+        function searchArticles() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const articles = document.getElementsByClassName('article');
+            for (let i = 0; i < articles.length; i++) {
+                const text = articles[i].innerText.toLowerCase();
+                if (text.includes(input)) {
+                    articles[i].classList.remove('hidden');
+                } else {
+                    articles[i].classList.add('hidden');
+                }
+            }
+        }
+
+        function filterCategory(category) {
+            const articles = document.getElementsByClassName('article');
+            const categories = document.getElementsByClassName('category');
+            // 先隐藏所有分类标题
+            for (let i = 0; i < categories.length; i++) {
+                categories[i].classList.add('hidden');
+            }
+            // 只显示当前分类标题
+            if (category === 'all') {
+                for (let i = 0; i < categories.length; i++) {
+                    categories[i].classList.remove('hidden');
+                }
+            } else {
+                for (let i = 0; i < categories.length; i++) {
+                    if (categories[i].innerText === getCategoryName(category)) {
+                        categories[i].classList.remove('hidden');
+                    }
+                }
+            }
+            // 文章显示逻辑
+            for (let i = 0; i < articles.length; i++) {
+                const cat = articles[i].getAttribute('data-category');
+                if (category === 'all' || cat === category) {
+                    articles[i].classList.remove('hidden');
+                } else {
+                    articles[i].classList.add('hidden');
+                }
+            }
+            // 清空搜索框
+            document.getElementById('searchInput').value = '';
+            // 按钮高亮
+            const btns = document.getElementsByClassName('nav-btn');
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].classList.remove('active');
+            }
+            document.getElementById('btn-' + category).classList.add('active');
+        }
+        // 辅助函数：根据分类英文返回中文
+        function getCategoryName(category) {
+            switch(category) {
+                case 'tech': return '技术分享';
+                case 'photo': return '摄影';
+                case 'essay': return '随笔';
+                default: return '';
+            }
+        }
+
+        window.onload = function() {
+            filterCategory('all');
+        }
+
+        function showArticleModal(title, date, image, content) {
+            // 填充模态框内容
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDate').innerText = date;
+            document.getElementById('modalImage').src = image;
+            document.getElementById('modalContent').innerText = content;
+            // 显示模态框
+            document.getElementById('articleModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('articleModal').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1 class="main-title">Steve的博客</h1>
+        <div class="header-divider"></div>
+        <p class="subtitle">用代码和文字记录成长的每一天</p>
+    </div>
+    <div class="top-bar">
+        <div class="nav-bar">
+            <button class="nav-btn active" id="btn-all" onclick="filterCategory('all')">全部</button>
+            <button class="nav-btn" id="btn-tech" onclick="filterCategory('tech')">技术分享</button>
+            <button class="nav-btn" id="btn-photo" onclick="filterCategory('photo')">摄影</button>
+            <button class="nav-btn" id="btn-essay" onclick="filterCategory('essay')">随笔</button>
+        </div>
+        <div class="search-bar">
+            <input id="searchInput" class="search-input" type="text" placeholder="搜索文章..." onkeyup="searchArticles()">
+        </div>
+    </div>
+    <div class="blog-container">
+        <!-- 技术分享板块 -->
+        <div class="category">技术分享</div>
+        <div class="article" data-category="tech">
+            <div class="date">2025年6月22日</div>
+            <h2>前端性能优化的五个关键点</h2>
+            <p>前端性能优化不仅能提升用户体验，还能降低服务器压力。常见方法包括图片懒加载、代码分包、缓存利用、减少重绘重排和使用CDN。</p>
+            <button class="read-more-btn" onclick="showArticleModal('前端性能优化的五个关键点','2025年6月22日','image/tech1.jpg','前端性能优化不仅能提升用户体验，还能降低服务器压力。常见方法包括图片懒加载、代码分包、缓存利用、减少重绘重排和使用CDN。')">阅读全文</button>
+        </div>
+        <div class="article" data-category="tech">
+            <div class="date">2025年6月19日</div>
+            <h2>Vue3响应式原理简析</h2>
+            <p>Vue3采用Proxy实现响应式，极大提升了性能和灵活性。理解其原理有助于更好地开发高效应用。</p>
+            <button class="read-more-btn" onclick="showArticleModal('Vue3响应式原理简析','2025年6月19日','image/tech2.jpg','Vue3采用Proxy实现响应式，极大提升了性能和灵活性。理解其原理有助于更好地开发高效应用。')">阅读全文</button>
+        </div>
+        <!-- 摄影板块 -->
+        <div class="category">摄影</div>
+        <div class="article" data-category="photo">
+            <div class="date">2025年6月16日</div>
+            <h2>晨曦中的城市</h2>
+            <p>清晨的城市，阳光洒在高楼上，仿佛给一切都镀上了金色的外衣。</p>
+            <button class="read-more-btn" onclick="showArticleModal('晨曦中的城市','2025年6月16日','image/photo1.jpg','清晨的城市，阳光洒在高楼上，仿佛给一切都镀上了金色的外衣。')">阅读全文</button>
+        </div>
+        <div class="article" data-category="photo">
+            <div class="date">2025年6月12日</div>
+            <h2>雨后公园的色彩</h2>
+            <p>雨后的公园，空气清新，花草树木色彩更加鲜明，随手一拍都是美景。</p>
+            <button class="read-more-btn" onclick="showArticleModal('雨后公园的色彩','2025年6月12日','image/photo2.jpg','雨后的公园，空气清新，花草树木色彩更加鲜明，随手一拍都是美景。')">阅读全文</button>
+        </div>
+        <!-- 随笔板块 -->
+        <div class="category">随笔</div>
+        <div class="article" data-category="essay">
+            <div class="date">2025年6月14日</div>
+            <h2>慢下来，感受生活</h2>
+            <p>在快节奏的生活中，偶尔停下脚步，看看身边的风景，感受生活的美好。</p>
+            <button class="read-more-btn" onclick="showArticleModal('慢下来，感受生活','2025年6月14日','image/essay1.jpg','在快节奏的生活中，偶尔停下脚步，看看身边的风景，感受生活的美好。')">阅读全文</button>
+        </div>
+        <div class="article" data-category="essay">
+            <div class="date">2025年6月11日</div>
+            <h2>一本书的启发</h2>
+            <p>最近读了一本好书，让我对人生和成长有了新的思考。阅读是心灵的旅行。</p>
+            <button class="read-more-btn" onclick="showArticleModal('一本书的启发','2025年6月11日','image/essay2.jpg','最近读了一本好书，让我对人生和成长有了新的思考。阅读是心灵的旅行。')">阅读全文</button>
+        </div>
+    </div>
+    <button id="backToTop" title="回到顶部">↑</button>
+
+    <!-- 模态框 -->
+    <div id="articleModal" class="article-modal">
+        <div class="article-modal-content">
+            <button class="article-modal-close" onclick="closeModal()">&times;</button>
+            <h2 id="modalTitle"></h2>
+            <div class="modal-date" id="modalDate"></div>
+            <img id="modalImage" class="modal-image" src="" alt="文章图片" style="max-width:100%;margin:18px 0;border-radius:8px;display:block;">
+            <div class="modal-text" id="modalContent"></div>
+        </div>
+    </div>
+    <!-- Bilibili视频模态框 -->
+    <div id="biliModal" class="article-modal">
+        <div class="article-modal-content">
+            <button class="article-modal-close" onclick="closeBiliModal()">&times;</button>
+            <h2 style="text-align:center;margin-top:40px;">我的Bilibili视频</h2>
+            <div style="display:flex;justify-content:center;align-items:center;margin:24px 0;">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1xx411c7mD" allowfullscreen="true" width="90%" height="360" style="border-radius:12px;border:none;max-width:700px;"></iframe>
+            </div>
+        </div>
+    </div>
+    <!-- 服务模态框 -->
+    <div id="serviceModal" class="article-modal">
+        <div class="article-modal-content">
+            <button class="article-modal-close" onclick="closeServiceModal()">&times;</button>
+            <h2 style="text-align:center;margin-top:40px;">提供的服务</h2>
+            <div id="serviceContent" style="max-width:600px;margin:32px auto 0 auto;font-size:1.15em;line-height:2;color:#333;text-align:left;padding:0 18px;">
+                <ul>
+                    <li>前端网页开发与设计</li>
+                    <li>小程序开发</li>
+                    <li>网站性能优化与SEO</li>
+                    <li>技术咨询与代码审查</li>
+                    <li>摄影后期处理</li>
+                </ul>
+                <p style="color:#888;font-size:0.98em;margin-top:18px;">如需合作或咨询，请通过邮箱 <b>your@email.com</b> 联系我。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-bar">
+        <a class="feature-btn" href="bilibili.html">我的Bilibili视频</a>
+        <a class="feature-btn" href="server.html">提供的服务</a>
+    </div>
+
+    <script>
+    // 回到顶部按钮功能
+    const backToTopBtn = document.getElementById('backToTop');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    };
+    backToTopBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    // 文章模态框功能
+    function showArticleModal(title, date, image, content) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalDate').innerText = date;
+        document.getElementById('modalImage').src = image;
+        document.getElementById('modalContent').innerText = content;
+        document.getElementById('articleModal').classList.add('active');
+    }
+    function closeModal() {
+        document.getElementById('articleModal').classList.remove('active');
+    }
+    // 点击遮罩关闭模态框
+    document.getElementById('articleModal').onclick = function(e) {
+        if (e.target === this) closeModal();
+    };
+    </script>
+</body>
+</html>
