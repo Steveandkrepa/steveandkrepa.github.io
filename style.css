@@ -1,143 +1,164 @@
-/* 全局基础样式 */
-body {
+* {
   margin: 0;
-  padding: 0 16px;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: #f5f8fc;
   color: #333;
   font-size: 16px;
   line-height: 1.6;
-  box-sizing: border-box;
+  padding: 0 16px;
 }
-
-/* 标题区域 */
 header {
   text-align: center;
-  padding: 30px 10px 10px;
+  padding: 30px 10px 20px;
 }
-
 header h1 {
   color: #2c6ed5;
-  font-size: 26px;
-  margin-bottom: 6px;
+  font-size: 28px;
+  margin-bottom: 8px;
 }
-
 header p {
   color: #666;
-  font-size: 14px;
+  font-size: 15px;
 }
-
-/* 导航按钮区域 */
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
   justify-content: center;
-  margin: 20px 0;
+  gap: 10px;
+  margin: 16px 0;
 }
-
-nav a {
+.nav-btn {
   padding: 8px 16px;
   background-color: #4A90E2;
   color: #fff;
   border-radius: 6px;
-  text-decoration: none;
+  border: none;
+  cursor: pointer;
   font-size: 15px;
-  transition: background-color 0.3s ease;
 }
-
-nav a:hover {
-  background-color: #3b7acc;
+.nav-btn.active {
+  background-color: #FF9800;
 }
-
-/* 搜索框样式 */
-.search-box {
+.search-input {
   width: 100%;
   max-width: 400px;
   padding: 10px 14px;
-  margin: 0 auto 24px;
+  margin: 12px auto;
   display: block;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 15px;
-  box-sizing: border-box;
 }
-
-/* 文章卡片样式 */
-.article-card {
+.category-block {
+  margin-bottom: 24px;
+}
+.category-title {
+  font-size: 1.5em;
+  color: #4A90E2;
+  margin: 16px 0 10px;
+}
+.article {
   background-color: #fff;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
-
-/* 分类标签 */
-.article-category {
-  color: #4A90E2;
-  font-weight: bold;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-
-/* 文章标题 */
-.article-card h3 {
-  font-size: 18px;
-  margin: 6px 0;
-  color: #2c6ed5;
-}
-
-.article-card h3:hover {
-  text-decoration: underline;
-}
-
-/* 时间 */
-.article-date {
+.article .date {
   color: #999;
   font-size: 13px;
+  margin-bottom: 6px;
 }
-
-/* 文章简介 */
-.article-summary {
+.article h2 {
+  font-size: 20px;
+  color: #2c6ed5;
+  margin-bottom: 8px;
+}
+.article h2:hover {
+  text-decoration: underline;
+}
+.article p {
   color: #444;
   margin-top: 8px;
   font-size: 15px;
 }
-
-/* 阅读更多按钮 */
-.read-more {
-  display: inline-block;
+.read-more-btn {
   margin-top: 10px;
-  color: #4A90E2;
-  font-size: 14px;
-  text-decoration: underline;
+  padding: 6px 12px;
+  background: #4A90E2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-
-/* 页脚样式 */
-footer {
-  text-align: center;
-  font-size: 13px;
-  color: #999;
-  padding: 20px 0;
-  margin-top: 20px;
+.feature-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  background: #333;
 }
-
-/* 小屏幕适配 */
-@media (max-width: 600px) {
-  body {
-    font-size: 15px;
+.feature-btn {
+  background: #4A90E2;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.article-modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.article-modal.active {
+  display: flex;
+}
+.article-modal-content {
+  background-color: #fff;
+  max-width: 700px;
+  width: 90%;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+.article-modal-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+#backToTop {
+  position: fixed;
+  right: 16px;
+  bottom: 30px;
+  background-color: #4A90E2;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;
+  font-size: 18px;
+}
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
   }
-  nav a {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-  .article-card {
-    padding: 12px;
-  }
-  .article-card h3 {
-    font-size: 16px;
-  }
-  .search-box {
-    font-size: 14px;
+  .nav-btn, .search-input {
+    width: 90%;
   }
 }
